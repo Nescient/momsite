@@ -1,4 +1,5 @@
-﻿class Greeter {
+﻿
+class Greeter {
     element: HTMLElement;
     span: HTMLElement;
     timerToken: number;
@@ -23,6 +24,21 @@
 
 window.onload = () => {
     var el = document.getElementById('content');
-    var greeter = new Greeter(el);
-    greeter.start();
+    
+    for (var index in imgs) {
+        var img = imgs[index];
+        var img_el = document.createElement('img');
+        img_el.src = img.fileName;
+        img_el.alt = img.getTitle();
+        //img_el.addEventListener("click", function () {
+        //    window.location.href = '/detail?id=' + img.imageId;
+        //});
+        var link_el = document.createElement("a");
+        link_el.href = "/detail.html?id=" + img.imageId.toString();
+        link_el.appendChild(img_el);
+        el.appendChild(link_el);
+    }
+
+    //var greeter = new Greeter(el);
+    //greeter.start();
 };
