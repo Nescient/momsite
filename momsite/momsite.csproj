@@ -24,6 +24,8 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="detail.html" />
+    <Content Include="gallery.html" />
+    <Content Include="header.html" />
     <Content Include="index.html" />
     <Content Include="web.config" />
   </ItemGroup>
