@@ -14,7 +14,7 @@
         });
     </script>
 </head>
-<body>
+<body style="background:black">
     <div id="headerDiv"></div>
     <center>
         <div style="max-width:1024px">
@@ -24,7 +24,7 @@
 
             <div id="detailsdiv">
                 <h1>Image Title</h1>
-                <p>Image Description</p>
+                <p style="color:white">Image Description</p>
             </div>
         </div>
     </center>
@@ -69,7 +69,7 @@
     for (var index in imgs) {
         var img_id = (Number.parseInt(index) + 1);
         var img = imgs[index];
-        addImageToDiv(img, index < 5 ? $("#leftnav") : $("#rightnav"), "/gallery.html?id=" + img_id.toString(), img_id === id);
+        addImageToDiv(img, index < 8 ? $("#leftnav") : $("#rightnav"), "/gallery.html?id=" + img_id.toString(), img_id === id);
     }
 
     //$("#leftlink").attr("href", "/gallery.html?id=" + (id - 1).toString());
