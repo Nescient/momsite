@@ -4,36 +4,6 @@
     <meta charset="utf-8" />
     <title>Circles of Life Gallary</title>
     <link rel="stylesheet" href="app.css" type="text/css" />
-    <style>
-        .child {
-            width: 49%;
-            display: inline-block;
-        }
-
-        #leftnav {
-            width: 24%;
-            float: left;
-        }
-
-            #leftnav img {
-                max-width: 100px;
-            }
-
-        #rightnav {
-            width: 24%;
-            float: right;
-        }
-
-            #rightnav img {
-                max-width: 100px;
-            }
-
-        #centerimage {
-            width: 49%;
-        }
-
-        
-    </style>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="data.js"></script>
     <!--load header-->
@@ -46,34 +16,12 @@
 </head>
 <body>
     <div id="headerDiv"></div>
-
-    <div id="parent">
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-        <div class="child">some stuff</div>
-
-
-    </div>
-
     <center>
         <div style="max-width:1024px">
             <div id="leftnav"></div>
             <div id="rightnav"></div>
             <div id="centerimage"></div>
-            
+
             <div id="detailsdiv">
                 <h1>Image Title</h1>
                 <p>Image Description</p>
@@ -82,11 +30,26 @@
     </center>
 </body>
 <script>
-    function addImageToDiv(img, div) {
-        var img_el = document.createElement('img');
-        img_el.src = img.fileName;
-        img_el.alt = img.getTitle();
-        div.append(img_el);
+    function addImageToDiv(img, div, link, selected) {
+
+
+        $('<a/>', {
+            'href': link,
+            html: $('<img/>', {
+                'src': img.fileName,
+                'alt': img.getTitle(),
+                'class': selected ? "selected" : ""
+            }
+            )
+
+        }).appendTo(div);
+
+
+        //<a class="vlightbox1" href="image1.jpg"
+        //var img_el = document.createElement('img');
+        //img_el.src = img.fileName;
+        //img_el.alt = img.getTitle();
+        //div.append(img_el);
         return;
     }
     var idstring = location.search;
@@ -104,8 +67,9 @@
     $("#detailsdiv > p").text(img.description);
 
     for (var index in imgs) {
+        var img_id = (Number.parseInt(index) + 1);
         var img = imgs[index];
-        addImageToDiv(img, index < 5 ? $("#leftnav") : $("#rightnav"));
+        addImageToDiv(img, index < 5 ? $("#leftnav") : $("#rightnav"), "/gallery.html?id=" + img_id.toString(), img_id === id);
     }
 
     //$("#leftlink").attr("href", "/gallery.html?id=" + (id - 1).toString());

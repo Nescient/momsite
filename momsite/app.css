@@ -62,6 +62,36 @@ ul.navigationmenu {
             }
 }
 
+/* product gallery page */
+#leftnav {
+    width: 24%;
+    float: left;
+}
+
+    #leftnav img {
+        max-width: 100px;
+    }
+
+        #leftnav img.selected {
+            opacity: .5;
+        }
+
+#rightnav {
+    width: 24%;
+    float: right;
+}
+
+    #rightnav img {
+        max-width: 100px;
+    }
+
+        #rightnav img.selected {
+            opacity: .5;
+        }
+
+#centerimage {
+    width: 49%;
+}
 
 img {
     border: 5px solid black;
