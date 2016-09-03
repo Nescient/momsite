@@ -24,7 +24,7 @@
 
             <div id="detailsdiv">
                 <h1>Image Title</h1>
-                <p style="color:white">Image Description</p>
+                <div style="color:white">Image Description</div>
             </div>
         </div>
     </center>
@@ -64,7 +64,7 @@
     img_el.alt = img.getTitle();
     $("#centerimage").append(img_el);
     $("#detailsdiv > h1").text(img.getTitle());
-    $("#detailsdiv > p").text(img.description);
+    $("#detailsdiv > div").html(img.description);
 
     for (var index in imgs) {
         var img_id = (Number.parseInt(index) + 1);

@@ -22,7 +22,7 @@
     </center>
     <div id="text">
         <h1></h1>
-        <p></p>
+        <div></div>
     </div>
 </body>
 <script>
@@ -38,7 +38,7 @@
     img_el.alt = img.getTitle();
     $("#content").append(img_el);
     $("#text > h1").text(img.getTitle());
-    $("#text > p").text(img.description);
+    $("#text > div").html(img.description);
 
     $("#leftlink").attr("href", "detail.html?id=" + (id - 1).toString());
     $("#rightlink").attr("href", "detail.html?id=" + (id + 1).toString());
