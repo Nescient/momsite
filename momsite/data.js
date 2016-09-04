@@ -329,7 +329,7 @@ for many animals, and is a favorite nesting \
 \
 <p>&nbsp; </p> \
 \
-<p><b>Northern Red Oak (Quercus rubra Linnaeus) < /b></p > \
+<p><b>Northern Red Oak (Quercus rubra Linnaeus) </b></p> \
  \
 <p>Trekking through our woods in springtime yields the \
 satisfying crunch of cracking acorns; the ones left by the sated squirrels.  \

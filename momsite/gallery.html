@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="app.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="data.js"></script>
+    <!--<script src="http://mrcoles.com/media/js/scroll-sneak.js"></script>-->
     <!--load header-->
     <script>
         $(function () {
@@ -30,19 +31,42 @@
     </center>
 </body>
 <script>
+    //var sneaky = new ScrollSneak(location.hostname);
+
+    //source:  http://stackoverflow.com/a/2880929
+    var urlParams;
+    (window.onpopstate = function () {
+        var match,
+            pl = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+            urlParams[decode(match[1])] = decode(match[2]);
+    })();
+
     function addImageToDiv(img, div, link, selected) {
-
-
+        var link_element =
         $('<a/>', {
             'href': link,
             html: $('<img/>', {
                 'src': img.fileName,
                 'alt': img.getTitle(),
                 'class': selected ? "selected" : ""
+            })
+        });
+        link_element.click(function (e) {
+            //console.log("scroll is " + $(window).scrollTop());
+            //sneaky.sneak();
+            if ($(window).scrollTop() > 0) {
+                $(link_element).attr('href', function () {
+                    return this.href + '&scroll=' + $(window).scrollTop();
+                });
             }
-            )
-
-        }).appendTo(div);
+        });
+        link_element.appendTo(div);
 
 
         //<a class="vlightbox1" href="image1.jpg"
@@ -70,6 +94,11 @@
         var img_id = (Number.parseInt(index) + 1);
         var img = imgs[index];
         addImageToDiv(img, index < 8 ? $("#leftnav") : $("#rightnav"), "gallery.html?id=" + img_id.toString(), img_id === id);
+    }
+
+    if (urlParams.scroll) {
+        $(window).scrollTop(parseInt(urlParams.scroll));
+        console.log("scrolling to " + urlParams.scroll);
     }
 
     //$("#leftlink").attr("href", "/gallery.html?id=" + (id - 1).toString());
