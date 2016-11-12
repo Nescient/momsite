@@ -65,7 +65,7 @@ ul.navigationmenu {
 
 /* product gallery page */
 #leftnav {
-    width: 24%;
+    width: 30%;
     float: left;
 }
 
@@ -78,7 +78,7 @@ ul.navigationmenu {
         }
 
 #rightnav {
-    width: 24%;
+    width: 30%;
     float: right;
 }
 
@@ -91,7 +91,7 @@ ul.navigationmenu {
         }
 
 #centerimage {
-    width: 49%;
+    width: 40%;
 }
 
 img {

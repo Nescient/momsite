@@ -19,7 +19,7 @@
 <body>
     <div id="headerDiv"></div>
     <center>
-        <div style="max-width:1024px">
+        <div style="max-width:1280px">
             <div id="leftnav"></div>
             <div id="rightnav"></div>
             <div id="centerimage"></div>
@@ -86,12 +86,17 @@
     img_el.alt = "gallery image " + id.toString();
     $("#centerimage").append(img_el);
     $("#detailsdiv > div").load(img.getDescriptionFileName() + " .MsoNormal",
-        function () {
-            console.log($("#detailsdiv > div"));
-            var title = $("#detailsdiv > div").find(".MsoNormal:first-child");
-            var title_string = title.html();
-            title.remove();
-            $("#detailsdiv > h1").html(title_string);
+        function (resp, status) {
+            if (status == "error") {
+                $("#detailsdiv").remove();
+            }
+            else {
+                console.log($("#detailsdiv > div"));
+                var title = $("#detailsdiv > div").find(".MsoNormal:first-child");
+                var title_string = title.html();
+                title.remove();
+                $("#detailsdiv > h1").html(title_string);
+            }
         });
 
     for (var index in imgs) {
