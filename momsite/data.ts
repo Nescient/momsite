@@ -22,7 +22,7 @@ class MomsImage {
     }
 
     getDescriptionFileName(): string {
-        return "data/" + this.imageId.toString() + ".htm" + ((this.imageId == 1 || this.imageId == 2) ? "l" : "");
+        return "data/" + this.imageId.toString() + ".htm";
     }
 }
 

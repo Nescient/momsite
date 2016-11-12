@@ -10,6 +10,12 @@ var MomsImage = (function () {
     MomsImage.prototype.getTitle = function () {
         return ("0" + this.imageId.toString()).slice(-2) + " - " + this.name;
     };
+    MomsImage.prototype.getImageFileName = function () {
+        return "data/" + this.imageId.toString() + ".png";
+    };
+    MomsImage.prototype.getDescriptionFileName = function () {
+        return "data/" + this.imageId.toString() + ".htm";
+    };
     return MomsImage;
 }());
 var img01 = new MomsImage("1.png", 1, "Zentangle Tribute", "<p>I used to work at the Everson Museum of Art and had the most \
