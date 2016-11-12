@@ -16,6 +16,14 @@ class MomsImage {
     getTitle(): string {
         return ("0" + this.imageId.toString()).slice(-2) + " - " + this.name;
     }
+
+    getImageFileName(): string {
+        return "data/" + this.imageId.toString() + ".png";
+    }
+
+    getDescriptionFileName(): string {
+        return "data/" + this.imageId.toString() + ".htm" + ((this.imageId == 1 || this.imageId == 2) ? "l" : "");
+    }
 }
 
 var img01 = new MomsImage("1.png", 1, "Zentangle Tribute", "<p>I used to work at the Everson Museum of Art and had the most \
