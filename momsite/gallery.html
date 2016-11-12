@@ -38,8 +38,7 @@
     </div>
 </body>
 <script>
-    //var sneaky = new ScrollSneak(location.hostname);
-
+    /* parse the parameters */
     //source:  http://stackoverflow.com/a/2880929
     var urlParams;
     (window.onpopstate = function () {
@@ -54,7 +53,9 @@
             urlParams[decode(match[1])] = decode(match[2]);
     })();
 
+    /* this function adds a new thumbnail to the columns */
     function addImageToDiv(img, div, link, selected) {
+        /* add the gallery link to the thumbnails */
         var link_element =
         $('<a/>', {
             'href': link,
@@ -64,9 +65,8 @@
                 'class': selected ? "selected" : ""
             })
         });
+        /* add the current scroll value when the thumbnail is clicked */
         link_element.click(function (e) {
-            //console.log("scroll is " + $(window).scrollTop());
-            //sneaky.sneak();
             if ($(window).scrollTop() > 0) {
                 $(link_element).attr('href', function () {
                     return this.href + '&scroll=' + $(window).scrollTop();
@@ -74,23 +74,22 @@
             }
         });
         link_element.appendTo(div);
-
-
-        //<a class="vlightbox1" href="image1.jpg"
-        //var img_el = document.createElement('img');
-        //img_el.src = img.fileName;
-        //img_el.alt = img.getTitle();
-        //div.append(img_el);
         return;
     }
+
+    /* parse the image id from the location string */
     var idstring = location.search;
     var idstringsplit = idstring ? idstring.split("=") : idstring;
     var id = (idstringsplit && idstringsplit.length && idstringsplit.length > 1) ? Number.parseInt(idstringsplit[1]) : 1;
     var img = imgs[id - 1];
+
+    /* add the image to the center element */
     var img_el = document.createElement('img');
     img_el.src = img.getImageFileName();
     img_el.alt = "gallery image " + id.toString();
     $("#centerimage").append(img_el);
+
+    /* load the description for the current image */
     $("#detailsdiv > div").load(img.getDescriptionFileName() + " .MsoNormal",
         function (resp, status) {
             if (status == "error") {
@@ -102,48 +101,28 @@
                 var title_string = title.html();
                 title.remove();
                 $("#detailsdiv > h1").html(title_string);
-                $("galleryModal.modal-caption").text(title_string);
+                $("#galleryModal > .modal-caption").html(title_string);
             }
         });
 
+    /* add all the images to the left and right columns */
     for (var index in imgs) {
         var img_id = (Number.parseInt(index) + 1);
         var img = imgs[index];
         addImageToDiv(img, index < (imgs.length / 2) ? $("#leftnav") : $("#rightnav"), "gallery.html?id=" + img_id.toString(), img_id === id);
     }
 
+    /* scroll the window down */
     if (urlParams.scroll) {
         $(window).scrollTop(parseInt(urlParams.scroll));
         console.log("scrolling to " + urlParams.scroll);
     }
 
-    //$("#leftlink").attr("href", "/gallery.html?id=" + (id - 1).toString());
-    //$("#rightlink").attr("href", "/gallery.html?id=" + (id + 1).toString());
-
-    // Get the modal
-    //var modal = $("#galleryModal");
+    /* set the current image to use the modal when clicked */
     $("#galleryModal > .modal-content").attr("src", imgs[id - 1].getImageFileName());
     $("#centerimage").click(function () {
         $("#galleryModal").show();
     });
 
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    //var img = document.getElementById('myImg');
-    //var modalImg = document.getElementById("img01");
-    //var captionText = document.getElementById("caption");
-    //img.onclick = function () {
-    //    modal.style.display = "block";
-    //    modalImg.src = this.src;
-    //    captionText.innerHTML = this.alt;
-    //}
-
-    // Get the <span> element that closes the modal
-    //var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    //span.onclick = function () {
-        //modal.style.display = "none";
-        //modal.hide();
-    //}
 </script>
 </html>
