@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<!--Copyright © Sam Savage 2016-->
 <html>
 <head>
     <meta charset="utf-8" />
@@ -52,8 +53,8 @@
         $('<a/>', {
             'href': link,
             html: $('<img/>', {
-                'src': img.fileName,
-                'alt': img.getTitle(),
+                'src': img.getImageFileName(),
+                'alt': "gallery image " + img.imageId,
                 'class': selected ? "selected" : ""
             })
         });
@@ -80,34 +81,23 @@
     var idstringsplit = idstring ? idstring.split("=") : idstring;
     var id = (idstringsplit && idstringsplit.length && idstringsplit.length > 1) ? Number.parseInt(idstringsplit[1]) : 1;
     var img = imgs[id - 1];
-    console.log(id);
-    console.log(img);
-    console.log(imgs);
     var img_el = document.createElement('img');
-    img_el.src = img.fileName;
-    img_el.alt = img.getTitle();
+    img_el.src = img.getImageFileName();
+    img_el.alt = "gallery image " + id.toString();
     $("#centerimage").append(img_el);
-    $("#detailsdiv > h1").text(img.getTitle());
     $("#detailsdiv > div").load(img.getDescriptionFileName() + " .MsoNormal",
         function () {
             console.log($("#detailsdiv > div"));
-            //alert($("#detailsdiv > div").length)
-            //alert($("#detailsdiv > div").html());
-            //alert($("#detailsdiv > div").find(".MsoNormal:first-child").html())
-            $("#detailsdiv > div").find(".MsoNormal:first-child").remove();
-            //var desc = $("#detailsdiv > div").html();
-            //desc.replace("“", "\"");
-            //desc.replace("’", "'");
-            //$("#detailsdiv > div").html(desc);
+            var title = $("#detailsdiv > div").find(".MsoNormal:first-child");
+            var title_string = title.html();
+            title.remove();
+            $("#detailsdiv > h1").html(title_string);
         });
-    //$("#detailsdiv > div").attr("w3-include-html", img.getDescriptionFileName());
-    //w3IncludeHTML();
-    //.html(img.description);
 
     for (var index in imgs) {
         var img_id = (Number.parseInt(index) + 1);
         var img = imgs[index];
-        addImageToDiv(img, index < 8 ? $("#leftnav") : $("#rightnav"), "gallery.html?id=" + img_id.toString(), img_id === id);
+        addImageToDiv(img, index < (imgs.length / 2) ? $("#leftnav") : $("#rightnav"), "gallery.html?id=" + img_id.toString(), img_id === id);
     }
 
     if (urlParams.scroll) {
