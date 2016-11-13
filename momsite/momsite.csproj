@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="cart.html" />
     <Content Include="detail.html" />
     <Content Include="error.html" />
     <Content Include="gallery.html" />

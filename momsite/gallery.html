@@ -14,42 +14,53 @@
         $(function () {
             // source: http://stackoverflow.com/a/9003363
             $("#headerDiv").load("header.html", function () {
-                var num_items = simpleCart.quantity();
-                if (num_items > 1000) {
-                    num_items = num_items.toExponential(3);
-                }
-                $("#viewCart > .simpleCart_quantity").text(num_items.toString());
+                $("#viewCart > .simpleCart_quantity").text(simpleCart.quantity().toString());
             });
+        });
+        simpleCart({
+            checkout: {
+                type: "PayPal",
+                email: "you@yours.com"
+            },
+            cartStyle: "table"
+        });
+
+        simpleCart.bind('beforeAdd', function (item) {
+            if (item.get('size') == 'Card') {
+                item.price(5.99);
+            } else if (item.get('size') == 'MediumPrint') {
+                item.price(35.99);
+            } else if (item.get('size') == 'LargePrint') {
+                item.price(123.99);
+            }
         });
     </script>
 </head>
 <body>
     <div id="headerDiv"></div>
-
-    <div style="max-width:1280px">
-        <center>
+    <center>
+        <div style="max-width:1280px">
             <div id="leftnav"></div>
             <div id="rightnav"></div>
             <div id="centerimage"></div>
 
-            <div class="simpleCart_shelfItem">
-                <p>
-                    <select class="item_size" style="background:black; color:white">
-                        <option value="Card"> Card for <span class="item_price">$5.99</span> </option>
-                        <option value="MediumPrint"> 11x11 Print for <span class="item_price">$35.99</span> </option>
-                        <option value="LargePrint"> 18x18 Print for <span class="item_price">$123.99</span> </option>
-                    </select>
-                    <input style="background:black; color:white; max-width: 50px" value="1" class="item_Quantity" type="number" min="1" max="100">
-                    <a style="color:white" class="item_add" href="javascript:;"> Add to Cart </a>
-                </p>
+            <div id="detailsdiv">
+                <div class="simpleCart_shelfItem">
+                    <p>
+                        <select class="item_size" style="background:black; color:white">
+                            <option value="Card"> Card for <span class="item_price">$5.99</span> </option>
+                            <option value="MediumPrint"> 11x11 Print for <span class="item_price">$35.99</span> </option>
+                            <option value="LargePrint"> 18x18 Print for <span class="item_price">$123.99</span> </option>
+                        </select>
+                        <input style="background:black; color:white; max-width: 50px" value="1" class="item_Quantity" type="number" min="1" max="100">
+                        <a style="color:white" class="item_add" href="javascript:;"> Add to Cart </a>
+                    </p>
+                    <h1 class="item_name">Image Title</h1>
+                </div>
+                <div style="text-align: left" class="description">Image Description</div>
             </div>
-        </center>
-
-        <div id="detailsdiv">
-            <h1 class="item_name">Image Title</h1>
-            <div class="description">Image Description</div>
         </div>
-    </div>
+    </center>
     <!--a modal window:  http://www.w3schools.com/howto/howto_css_modal_images.asp-->
     <div id="galleryModal" class="modal" onclick="document.getElementById('galleryModal').style.display = 'none'">
         <!--<span class="modal-close" onclick="document.getElementById('galleryModal').style.display = 'none'">&times;</span>-->
@@ -113,14 +124,15 @@
     $("#detailsdiv > div.description").load(img.getDescriptionFileName() + " .MsoNormal",
         function (resp, status) {
             if (status == "error") {
-                $("#detailsdiv").remove();
+                $("#detailsdiv > div > h1").text("Gallery Image " + id.toString());
+                $("#detailsdiv > div").remove();
             }
             else {
                 console.log($("#detailsdiv > div"));
                 var title = $("#detailsdiv > div").find(".MsoNormal:first-child");
                 var title_string = title.html();
                 title.remove();
-                $("#detailsdiv > h1").html(title_string);
+                $("#detailsdiv > div > h1").html(title_string);
                 $("#galleryModal > .modal-caption").html(title_string);
             }
         });
@@ -145,12 +157,13 @@
     });
 
     /* set up the shopping cart */
-    simpleCart({
-        checkout: {
-            type: "PayPal",
-            email: "you@yours.com"
-        }
-    });
+    //simpleCart({
+    //    checkout: {
+    //        type: "PayPal",
+    //        email: "you@yours.com"
+    //    },
+    //    cartStyle: "table"
+    //});
 
 </script>
 </html>
