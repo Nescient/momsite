@@ -20,17 +20,22 @@
 </head>
 <body>
     <div id="headerDiv"></div>
-    <div class="simpleCart_items"></div>
+    <!--<div class="simpleCart_items"></div>-->
+    
 
     <center>
         <div style="max-width:1280px">
             <div style="float:left"><strong>Items: </strong><span class="simpleCart_quantity"></span></div>
             <div style="float:right"><strong>Total: </strong><span class="simpleCart_total"></span></div>
 
+            <a href="javascript:;" class="simpleCart_empty" style="color:white">Empty Cart</a>
 
             <div class="simpleCart_items"></div>
 
-
+            <div id="emptyCartDisplay" style="display:none">
+            <h1>Your Shopping Cart is empty.</h1>
+            <h1>Select the Product Gallery above to view Items for sale.</h1>
+            </div>
             <!--<ul id="cartList">
                 <li>some stuff</li>
             </ul>-->
@@ -86,7 +91,7 @@
         //Name of the item
         { attr: "name", label: "Item" },
 
-        { attr: "size", label: "Kind" },
+        { attr: "size", label: false },
 
         //Quantity displayed as an input
         { attr: "quantity", label: "Quantity", view: "input" },
@@ -127,6 +132,19 @@
         data.email = document.getElementById("email").value;
         data.phone = document.getElementById("phone").value;
         data.comments = document.getElementById("comments").value;
+    });
+
+    /* if the cart is empty */
+    simpleCart.bind('update', function () {
+        if (simpleCart.quantity() <= 0) {
+            //alert(simpleCart.quantity())
+            $(".simpleCart_items").hide();
+            $("#emptyCartDisplay").show();
+        }
+        else {
+            $(".simpleCart_items").show();
+            $("#emptyCartDisplay").hide();
+        }
     });
 </script>
 </html>
