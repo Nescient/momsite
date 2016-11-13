@@ -1,5 +1,37 @@
 #!/bin/bash
 
+
+for i in $(seq 1 23); do
+   convert -density 100 -depth 2 mark/"$i"_w1.png mark2/"$i"_w1.png
+   convert -density 100 -depth 2 mark/"$i"_w9.png mark2/"$i"_w9.png
+   convert -density 100 -depth 2 mark/"$i"_w8.png mark2/"$i"_w8.png
+   convert -density 100 -depth 2 mark/"$i"_w7.png mark2/"$i"_w7.png
+   convert -density 100 -depth 2 mark/"$i"_w6.png mark2/"$i"_w6.png
+done
+
+exit
+
+mkdir raw
+mkdir norm
+mkdir mark
+
+# for i in $(ls *.pdf); do
+#    echo $i to "$i.png"
+# done
+
+for i in $(seq 1 23); do
+   echo "Image $i"
+   convert -trim -density 600 -flatten $i.pdf raw/$i.png
+   convert -density 100 -resize 3700x3700 -depth 2 -trim raw/$i.png norm/$i.png
+   composite -gravity center watermark.png norm/$i.png mark/"$i"_w1.png
+   composite -gravity center watermark90.png norm/$i.png mark/"$i"_w9.png
+   composite -gravity center watermark80.png norm/$i.png mark/"$i"_w8.png
+   composite -gravity center watermark70.png norm/$i.png mark/"$i"_w7.png
+   composite -gravity center watermark60.png norm/$i.png mark/"$i"_w6.png
+done
+
+exit
+
 convert -trim -density 600 -resize 3700x3700 -flatten 1.pdf 1.png
 convert -trim -density 600 -resize 3700x3700 -flatten 2.pdf 2.png
 convert -trim -density 600 -resize 3700x3700 -flatten 3.pdf 3.png
@@ -58,4 +90,6 @@ exit
 
 convert -density 600 -resize 3700x3700 test.pdf a.png
 convert a.png -fuzz 20% -transparent white watermark.png
+
+convert watermark.png -resize 50% watermark50.png
 
