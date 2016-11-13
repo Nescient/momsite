@@ -7,29 +7,49 @@
     <link rel="stylesheet" href="app.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="data.js"></script>
+    <script src="simpleCart.min.js"></script>
     <!--<script src="http://mrcoles.com/media/js/scroll-sneak.js"></script>-->
     <!--load header-->
-    <!--<script>
+    <script>
         $(function () {
             // source: http://stackoverflow.com/a/9003363
-            $("#headerDiv").load("header.html");
+            $("#headerDiv").load("header.html", function () {
+                var num_items = simpleCart.quantity();
+                if (num_items > 1000) {
+                    num_items = num_items.toExponential(3);
+                }
+                $("#viewCart > .simpleCart_quantity").text(num_items.toString());
+            });
         });
-    </script>-->
+    </script>
 </head>
 <body>
     <div id="headerDiv"></div>
-    <center>
-        <div style="max-width:1280px">
+
+    <div style="max-width:1280px">
+        <center>
             <div id="leftnav"></div>
             <div id="rightnav"></div>
             <div id="centerimage"></div>
 
-            <div id="detailsdiv">
-                <h1>Image Title</h1>
-                <div>Image Description</div>
+            <div class="simpleCart_shelfItem">
+                <p>
+                    <select class="item_size" style="background:black; color:white">
+                        <option value="Card"> Card for <span class="item_price">$5.99</span> </option>
+                        <option value="MediumPrint"> 11x11 Print for <span class="item_price">$35.99</span> </option>
+                        <option value="LargePrint"> 18x18 Print for <span class="item_price">$123.99</span> </option>
+                    </select>
+                    <input style="background:black; color:white; max-width: 50px" value="1" class="item_Quantity" type="number" min="1" max="100">
+                    <a style="color:white" class="item_add" href="javascript:;"> Add to Cart </a>
+                </p>
             </div>
+        </center>
+
+        <div id="detailsdiv">
+            <h1 class="item_name">Image Title</h1>
+            <div class="description">Image Description</div>
         </div>
-    </center>
+    </div>
     <!--a modal window:  http://www.w3schools.com/howto/howto_css_modal_images.asp-->
     <div id="galleryModal" class="modal" onclick="document.getElementById('galleryModal').style.display = 'none'">
         <!--<span class="modal-close" onclick="document.getElementById('galleryModal').style.display = 'none'">&times;</span>-->
@@ -90,7 +110,7 @@
     $("#centerimage").append(img_el);
 
     /* load the description for the current image */
-    $("#detailsdiv > div").load(img.getDescriptionFileName() + " .MsoNormal",
+    $("#detailsdiv > div.description").load(img.getDescriptionFileName() + " .MsoNormal",
         function (resp, status) {
             if (status == "error") {
                 $("#detailsdiv").remove();
@@ -122,6 +142,14 @@
     $("#galleryModal > .modal-content").attr("src", imgs[id - 1].getImageFileName());
     $("#centerimage").click(function () {
         $("#galleryModal").show();
+    });
+
+    /* set up the shopping cart */
+    simpleCart({
+        checkout: {
+            type: "PayPal",
+            email: "you@yours.com"
+        }
     });
 
 </script>
