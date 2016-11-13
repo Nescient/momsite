@@ -1,32 +1,32 @@
 #!/bin/bash
 
-convert -trim -density 600 -resize 3700x3700 1.pdf 1.png
-convert -trim -density 600 -resize 3700x3700 2.pdf 2.png
-convert -trim -density 600 -resize 3700x3700 3.pdf 3.png
-convert -trim -density 600 -resize 3700x3700 4.pdf 4.png
-convert -trim -density 600 -resize 3700x3700 5.pdf 5.png
-convert -trim -density 600 -resize 3700x3700 6.pdf 6.png
-convert -trim -density 600 -resize 3700x3700 7.pdf 7.png
-convert -trim -density 600 -resize 3700x3700 8.pdf 8.png
-convert -trim -density 600 -resize 3700x3700 9.pdf 9.png
-convert -trim -density 600 -resize 3700x3700 10.pdf 10.png
-convert -trim -density 600 -resize 3700x3700 11.pdf 11.png
-convert -trim -density 600 -resize 3700x3700 12.pdf 12.png
-convert -trim -density 600 -resize 3700x3700 13.pdf 13.png
-convert -trim -density 600 -resize 3700x3700 14.pdf 14.png
-convert -trim -density 600 -resize 3700x3700 15.pdf 15.png
-convert -trim -density 600 -resize 3700x3700 16.pdf 16.png
-convert -trim -density 600 -resize 3700x3700 17.pdf 17.png
-convert -trim -density 600 -resize 3700x3700 18.pdf 18.png
-convert -trim -density 600 -resize 3700x3700 19.pdf 19.png
-convert -trim -density 600 -resize 3700x3700 20.pdf 20.png
-convert -trim -density 600 -resize 3700x3700 21.pdf 21.png
-convert -trim -density 600 -resize 3700x3700 22.pdf 22.png
-convert -trim -density 600 -resize 3700x3700 23.pdf 23.png
+convert -trim -density 600 -resize 3700x3700 -flatten 1.pdf 1.png
+convert -trim -density 600 -resize 3700x3700 -flatten 2.pdf 2.png
+convert -trim -density 600 -resize 3700x3700 -flatten 3.pdf 3.png
+convert -trim -density 600 -resize 3700x3700 -flatten 4.pdf 4.png
+convert -trim -density 600 -resize 3700x3700 -flatten 5.pdf 5.png
+convert -trim -density 600 -resize 3700x3700 -flatten 6.pdf 6.png
+convert -trim -density 600 -resize 3700x3700 -flatten 7.pdf 7.png
+convert -trim -density 600 -resize 3700x3700 -flatten 8.pdf 8.png
+convert -trim -density 600 -resize 3700x3700 -flatten 9.pdf 9.png
+convert -trim -density 600 -resize 3700x3700 -flatten 10.pdf 10.png
+convert -trim -density 600 -resize 3700x3700 -flatten 11.pdf 11.png
+convert -trim -density 600 -resize 3700x3700 -flatten 12.pdf 12.png
+convert -trim -density 600 -resize 3700x3700 -flatten 13.pdf 13.png
+convert -trim -density 600 -resize 3700x3700 -flatten 14.pdf 14.png
+convert -trim -density 600 -resize 3700x3700 -flatten 15.pdf 15.png
+convert -trim -density 600 -resize 3700x3700 -flatten 16.pdf 16.png
+convert -trim -density 600 -resize 3700x3700 -flatten 17.pdf 17.png
+convert -trim -density 600 -resize 3700x3700 -flatten 18.pdf 18.png
+convert -trim -density 600 -resize 3700x3700 -flatten 19.pdf 19.png
+convert -trim -density 600 -resize 3700x3700 -flatten 20.pdf 20.png
+convert -trim -density 600 -resize 3700x3700 -background white -alpha remove 21.pdf 21.png
+convert -trim -density 600 -resize 3700x3700 -flatten 22.pdf 22.png
+convert -trim -density 600 -resize 3700x3700 -flatten 23.pdf 23.png
 
 exit
 
-composite -gravity center watermark.png 1.png 1w.png
+composite -gravity center watermark70.png 1.png 1w.png
 composite -gravity center watermark.png 2.png 2w.png
 composite -gravity center watermark.png 3.png 3w.png
 composite -gravity center watermark.png 4.png 4w.png
