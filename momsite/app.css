@@ -382,3 +382,15 @@ h1 {
 .itemRow {
     padding: 5px;
 }
+
+.itemRow td {
+    padding: 10px;
+}
+
+.itemRow td a {
+    color:white;
+}
+
+.itemRow td input {
+    max-width: 30px;
+}
