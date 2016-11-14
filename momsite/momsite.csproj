@@ -32,6 +32,7 @@
     <Content Include="header.html" />
     <Content Include="index.html" />
     <Content Include="news.html" />
+    <Content Include="simpleCart.min.js" />
     <Content Include="testimonials.html" />
     <Content Include="web.config" />
   </ItemGroup>
