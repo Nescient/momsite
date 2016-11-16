@@ -66,7 +66,12 @@
                 </fieldset>
             </form>
             <span class="checkout_btn">Send Order</span>-->
-            <a style="color:white" href="javascript:;" class="simpleCart_checkout">Checkout</a>
+            <div>
+                <textarea style="width:50%; background: black; color:white;" placeholder="Write some optional comments about your order." id="comments"></textarea>
+            </div>
+            <div>
+                <a style="color:white" href="javascript:;" class="simpleCart_checkout">Checkout</a>
+            </div>
         </div>
     </center>
     <!--<div></div>
@@ -139,7 +144,13 @@
         checkout: {
             type: "PayPal",
             email: "antimetabole-facilitator@gmail.com",
-            sandbox: true
+            sandbox: true,
+            success: "cart.html?order=complete",
+            cancel: "cart.html",
+            extra_data: {
+                storename: "Bob's cool plumbing store",
+                cartid: "12321321"
+            }
         }
         //checkout: {
         //    type: "SendForm",
@@ -167,6 +178,19 @@
     //    data.phone = document.getElementById("phone").value;
     //    data.comments = document.getElementById("comments").value;
     //});
+
+    simpleCart.bind('beforeCheckout', function (data) {
+        data.comments = document.getElementById("comments").value;
+        alert(data.comments)
+        console.log(data)
+        console.log(data.comments)
+        simpleCart.add({
+            name: "Customer Comments",
+            price: 0,
+            quantity: 1,
+            size: data.comments
+        });
+    });
 
     /* if the cart is empty */
     simpleCart.bind('update', function () {

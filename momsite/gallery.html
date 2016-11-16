@@ -28,11 +28,15 @@
 
         simpleCart.bind('beforeAdd', function (item) {
             if (item.get("type") == "Card") {
-                item.price(5.99);
+                item.price(5);
             } else if (item.get("type") == "Medium Print") {
-                item.price(35.99);
+                item.price(5);
             } else if (item.get("type") == "Large Print") {
-                item.price(123.99);
+                item.price(15);
+            } else if (item.get("type") == "Medium Print Colored") {
+                item.price(15);
+            } else if (item.get("type") == "Large Print Colored") {
+                item.price(30);
             }
         });
     </script>
@@ -49,9 +53,11 @@
                 <div class="simpleCart_shelfItem">
                     <p>
                         <select class="item_type" style="background:black; color:white">
-                            <option value="Card"> Card for <span class="item_price">$5.99</span> </option>
-                            <option value="Medium Print"> 11x11 Print for <span class="item_price">$35.99</span> </option>
-                            <option value="Large Print"> 18x18 Print for <span class="item_price">$123.99</span> </option>
+                            <option value="Card"> Card for <span class="item_price">$5.00</span> </option>
+                            <option value="Medium Print"> 11x11 Print for <span class="item_price">$5.00</span> </option>
+                            <option value="Large Print"> 18x18 Print for <span class="item_price">$15.00</span> </option>
+                            <option value="Medium Print Colored"> 11x11 Colored Print for <span class="item_price">$15.00</span> </option>
+                            <option value="Large Print Colored"> 18x18 Colored Print for <span class="item_price">$30.00</span> </option>
                         </select>
                         <input style="background:black; color:white; max-width: 50px" value="1" class="item_Quantity" type="number" min="1" max="100">
                         <a style="color:white" class="item_add" href="javascript:;"> Add to Cart </a>
