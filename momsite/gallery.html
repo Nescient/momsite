@@ -14,7 +14,7 @@
         $(function () {
             // source: http://stackoverflow.com/a/9003363
             $("#headerDiv").load("header.html", function () {
-                $("#viewCart > .simpleCart_quantity").text(simpleCart.quantity().toString());
+                $("#viewCart > span").text("$" + simpleCart.grandTotal().toString());
             });
         });
         simpleCart({ cartStyle: "table" });
@@ -55,6 +55,7 @@
                         <input style="background:black; color:white; max-width: 50px" value="1" class="item_Quantity" type="number" min="1" max="100">
                         <a style="color:white" class="item_add" href="javascript:;"> Add to Cart </a>
                     </p>
+                    <img style="display:none" class="item_image">
                     <h1 class="item_name">Image Title</h1>
                 </div>
                 <div style="text-align: left" class="description">Image Description</div>
@@ -119,6 +120,7 @@
     img_el.src = img.getImageFileName();
     img_el.alt = "gallery image " + id.toString();
     $("#centerimage").append(img_el);
+    $("#detailsdiv img.item_image").attr("src", img.getImageFileName());
 
     /* load the description for the current image */
     $("#detailsdiv > div.description").load(img.getDescriptionFileName() + " .MsoNormal",
@@ -164,6 +166,55 @@
     //    },
     //    cartStyle: "table"
     //});
+    //$("#detailsdiv a.item_add").delay(500).animate({ css: { top: '0px' }, delay: 100, speed: 100 });
+    //$("#demoShelf .simpleCart_shelfItem").delay(500).animateStep({ css: { top: '0px' }, delay: 100, speed: 100 });
+    $("#detailsdiv a.item_add").click(function () {
+        var old_image = $("#centerimage img");
+        var new_image = old_image.clone();
+        //$("#centerimage img").hide();
+        old_image.css('visibility', 'hidden');
+        $("#centerimage").append(new_image);
+        
+        
+        //new_image.attr("position", "absolute");
+        
+        new_image.css({ position: 'absolute' });
+        new_image.css(old_image.offset());
+
+        new_image.animate({
+            opacity: 0.25,
+            left: "+=1055",
+            top:"-=40",
+            height:"toggle"
+        }, 1000, function () {
+            new_image.remove();
+            //$("#centerimage img").show();
+            old_image.css('visibility', 'visible');
+        });
+        //$(".intro").css('overflow', 'visible');
+        //var clone = $(this).clone(),
+		//	position = $(this).position(),
+		//	bezier_params = {
+		//	    start: {
+		//	        x: position.left,
+		//	        y: 0,
+		//	        angle: -90
+		//	    },
+		//	    end: {
+		//	        x: 310,
+		//	        y: -210,
+		//	        angle: 180,
+		//	        length: .2
+		//	    }
+		//	};
+
+        //clone.appendTo('#detailsdiv');
+        //clone.find('.tooltip').hide();
+        //clone.addClass('addDemoAnimation');
+        //clone.animate({ path: new $.path.bezier(bezier_params) }, 600);
+
+    });
+
 
 </script>
 </html>
