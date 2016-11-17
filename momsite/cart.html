@@ -29,10 +29,11 @@
             extra_data: {
                 storename: "Bob's cool plumbing store",
                 cartid: "12321321",
-                commut: function(){
+                commut: function () {
                     return "hello" + document.getElementById("comments").value;;
-        }
-            }
+                }
+            },
+            data: {test: "this is a test"},
         });
     </script>
 </head>
@@ -125,81 +126,43 @@
     //    $("#cartList").append(li_el);
     //});
 
+    //simpleCart({
+    //    //Setting the Cart Columns for the sidebar cart display.
+    //    cartColumns: [
+    //    //{ attr: "image", label: false, view: "image"},
+
+    //    //Name of the item
+    //    { attr: "name", label: "Item" },
+
+    //    { attr: "type", label: false },
+
+    //    //Quantity displayed as an input
+    //    { attr: "quantity", label: "Quantity", view: "input" },
+
+    //    //Built in view for a remove link
+    //    { view: 'remove', text: "X", label: "Del" },
+
+    //    //Price of item
+    //    //{ attr: "price", label: "Price", view: "currency"},
+
+    //    //Subtotal of that row (quantity of that item * the price)
+    //    { attr: "total", label: "Sub-Total", view: "currency" }
+
+    //    ],
+    //});
+
     simpleCart({
-        //Setting the Cart Columns for the sidebar cart display.
         cartColumns: [
-        //{ attr: "image", label: false, view: "image"},
-
-        //Name of the item
-        { attr: "name", label: "Item" },
-
-        { attr: "type", label: false },
-
-        //Quantity displayed as an input
-        { attr: "quantity", label: "Quantity", view: "input" },
-
-        //Built in view for a remove link
-        { view: 'remove', text: "X", label: "Del" },
-
-        //Price of item
-        //{ attr: "price", label: "Price", view: "currency"},
-
-        //Subtotal of that row (quantity of that item * the price)
-        { attr: "total", label: "Sub-Total", view: "currency" }
-
-        ],
-        cartStyle: "table",
-        checkout: {
-            type: "PayPal",
-            email: "antimetabole-facilitator@gmail.com",
-            sandbox: true,
-            success: "circles-of-life.com/cart.html?order=complete",
-            cancel: "circles-of-life.com/cart.html",
-            extra_data: {
-                storename: "Bob's cool plumbing store",
-                cartid: "12321321"
-            },
-            shippingFlatRate: 5
-        }
-        //checkout: {
-        //    type: "SendForm",
-        //    url: "http://www.w3schools.com/tags/demo_form_method_post.asp",
-        //    method: "POST",
-        //    success: "success.html",
-        //    cancel: "cancel.php",
-        //    extra_data: {
-        //        first_name: document.getElementById("first_name").value,
-        //        last_name: document.getElementById("last_name").value,
-        //        email: document.getElementById("email").value,
-        //        email: document.getElementById("phone").value,
-        //        email: document.getElementById("comments").value,
-        //        cartid: "12321321"
-        //    }
-
-        //}
-
+            { attr: "name", label: "Name" },
+            { attr: "type", label: false },
+            { attr: "price", label: "Price", view: 'currency' },
+            { view: "decrement", label: false, text: "-" },
+            { attr: "quantity", label: "Qty" },
+            { view: "increment", label: false, text: "+" },
+            { attr: "total", label: "SubTotal", view: 'currency' },
+            { view: "remove", text: "Remove", label: false }
+        ]
     });
-
-    //simpleCart.bind('beforeCheckout', function (data) {
-    //    data.first_name = document.getElementById("first_name").value;
-    //    data.last_name = document.getElementById("last_name").value;
-    //    data.email = document.getElementById("email").value;
-    //    data.phone = document.getElementById("phone").value;
-    //    data.comments = document.getElementById("comments").value;
-    //});
-
-    //simpleCart.bind('beforeCheckout', function (data) {
-    //    data.comments = document.getElementById("comments").value;
-    //    alert(data.comments)
-    //    console.log(data)
-    //    console.log(data.comments)
-    //    simpleCart.add({
-    //        name: "Customer Comments",
-    //        price: 0,
-    //        quantity: 1,
-    //        size: data.comments
-    //    });
-    //});
 
     /* if the cart is empty */
     simpleCart.bind('update', function () {
