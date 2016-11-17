@@ -14,14 +14,7 @@
                 $("#viewCart > .simpleCart_quantity").text(simpleCart.quantity().toString());
             });
         });
-        simpleCart({
-            checkout: {
-                type: "PayPal",
-                email: "antimetabole-facilitator@gmail.com",
-                sandbox: true
-            },
-            cartStyle: "table"
-        });
+        simpleCart({ cartStyle: "table" });
     </script>
 </head>
 <body>
