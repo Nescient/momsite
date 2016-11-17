@@ -8,13 +8,13 @@
     <script src="data.js"></script>
     <script src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="http://visuallightbox.com/images/demo/jquery.min.js" type="text/javascript"></script>
+    <script src="simpleCart.min.js"></script>
     <!--load header-->
     <script>
         $(function () {
             // source: http://stackoverflow.com/a/9003363
             $("#headerDiv").load("header.html", function () {
-                $("#viewCart > .simpleCart_quantity").text(simpleCart.quantity().toString());
+                $("#viewCart > span").text("$"+simpleCart.grandTotal().toString());
             });
         });
         simpleCart({ cartStyle: "table" });
@@ -27,7 +27,7 @@
             <h3>Welcome to the Circles-of-Life homepage.</h3>
             <p>
                 Please view the <a href="about.html">About</a> page to read information on who I am and why I draw these circles.  You can see
-                drawings that are for sale on the <a href="gallery.html">Product Gallery</a> page. I am selling these drawings as greeting cards,
+                drawings that are for sale on the <a href="gallery.html">Product Gallery</a> page. I am selling these drawings as greeting cards (6in square),
                 11in x 11in prints, and 18in x 18in prints.  You can order them as uncolored prints or colored prints.  To see some of the
                 coloring options, please view the <a href="testimonials.html">User Gallery</a> page.  Please indicate in the PayPal comment section how
                 you would like a print colored (this will be after you checkout, but before you verify the order on the PayPal website).
