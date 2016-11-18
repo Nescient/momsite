@@ -36,7 +36,7 @@ class OtherImage {
     }
 
     getDescriptionFileName(): string {
-        return "reviews/" + this.imageId.toString() + ".htm";
+        return "data/" + this.imageId.toString() + ".htm";
     }
 }
 

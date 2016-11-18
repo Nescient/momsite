@@ -45,16 +45,16 @@
             <div id="detailsdiv">
                 <div class="simpleCart_shelfItem">
                     <p>
-                        <select class="item_type" style="background:black; color:white; font-size: 110%">
+                        <select class="item_type" style="background:black; color:white; font-size: 110%; margin-right: 10px;">
                             <option value="Card"> Card for <span class="item_price">$5.00</span> </option>
                             <option value="Medium Print"> 11x11 Print for <span class="item_price">$5.00</span> </option>
                             <option value="Large Print"> 18x18 Print for <span class="item_price">$15.00</span> </option>
-                            <option value="Medium Print Colored"> 11x11 Colored Print for <span class="item_price">$15.00</span> </option>
-                            <option value="Large Print Colored"> 18x18 Colored Print for <span class="item_price">$30.00</span> </option>
+                            <!--<option value="Medium Print Colored"> 11x11 Colored Print for <span class="item_price">$15.00</span> </option>
+                            <option value="Large Print Colored"> 18x18 Colored Print for <span class="item_price">$30.00</span> </option>-->
                         </select>
-                        <input style="background:black; color:white; max-width: 50px; font-size: 110%" value="1" class="item_Quantity" type="number" min="1" max="100">
+                        <input style="background:black; color:white; max-width: 50px; font-size: 110%; margin-right: 10px; margin-top: 10px;" value="1" class="item_Quantity" type="number" min="1" max="100">
                         <a style="margin-top: 10px; border-radius: 5px; padding: 5px; color:black; font-size: 110%; background: white; text-decoration: none" class="item_add" href="javascript:;"> Add to Cart </a>
-                        <div style="max-width: 500px">
+                        <div style="max-width: 500px; display: none">
                             <a onclick="$('#detailsdiv textarea.item_comment').show(); $(this).hide()" href="javascript:;">Click here to add a comment <b>before</b> placing the item in your cart.</a>
                             <textarea class="item_comment" style="width:100%; background: black; color:white; display: none" placeholder="Write some comments about this item (max 199 characters)." maxlength="199"></textarea>
                         </div>

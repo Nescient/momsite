@@ -27,7 +27,7 @@ var OtherImage = (function () {
         return "reviews/" + this.imageId.toString() + ((this.imageId == 9) ? ".jpg" : ".png");
     };
     OtherImage.prototype.getDescriptionFileName = function () {
-        return "reviews/" + this.imageId.toString() + ".htm";
+        return "data/" + this.imageId.toString() + ".htm";
     };
     return OtherImage;
 }());
