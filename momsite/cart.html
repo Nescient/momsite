@@ -26,14 +26,24 @@
             },
             cartStyle: "table",
             shippingFlatRate: 5,
-            extra_data: {
-                storename: "Bob's cool plumbing store",
-                cartid: "12321321",
-                commut: function () {
-                    return "hello" + document.getElementById("comments").value;;
-                }
-            },
-            data: { test: "this is a test" },
+            //extra_data: {
+            //    storename: "Bob's cool plumbing store",
+            //    cartid: "12321321",
+            //    commut: function () {
+            //        return "hello" + document.getElementById("comments").value;;
+            //    }
+            //},
+            //data: { test: "this is a test" },
+            cartColumns: [
+            { attr: "name", label: "Name" },
+            { attr: "type", label: false },
+            { attr: "price", label: "Price", view: 'currency' },
+            { view: "decrement", label: false, text: "-" },
+            { attr: "quantity", label: "Qty" },
+            { view: "increment", label: false, text: "+" },
+            { attr: "total", label: "SubTotal", view: 'currency' },
+            { view: "remove", text: "Remove", label: false }
+            ]
         });
     </script>
 </head>
@@ -43,7 +53,7 @@
 
 
     <center>
-        <div style="max-width:800px">
+        <div style="max-width:700px">
             <div style="float:left"><strong>Items: </strong><span class="simpleCart_quantity"></span></div>
             <div style="float:right"><strong>Total: </strong><span class="simpleCart_total"></span></div>
             <a href="javascript:;" class="simpleCart_empty" style="color:white">Empty Cart</a>
@@ -57,8 +67,8 @@
             <!--<ul id="cartList">
                 <li>some stuff</li>
             </ul>-->
-            <div style="margin: 10px; width: 100%; text-align:right">Shipping: <span class="simpleCart_shipping"></span></div>
-            <div style="margin: 10px; width: 100%; text-align:right"><strong>Grand Total:</strong> <span class="simpleCart_grandTotal"></span></div>
+            <div style="margin: 10px; width: 98%; text-align:right; padding-right:10px;">Shipping: <span class="simpleCart_shipping"></span></div>
+            <div style="margin: 10px; width: 98%; text-align:right; padding-right:10px;"><strong>Grand Total:</strong> <span class="simpleCart_grandTotal"></span></div>
             <!--<a href="javascript:;" class="simpleCart_checkout">Checkout</a>-->
             <!--<form id="contact" method="post" action="" style="margin:10px">
                 <fieldset>
@@ -79,7 +89,8 @@
                 <textarea style="width:100%; background: black; color:white;" placeholder="Write some optional comments about your order." id="comments"></textarea>
             </div>
             <div>
-                <a style="text-decoration: none; padding: 5px; color:black; line-height: 150%; font-size: 150%; background: white; border-radius: 50px;" href="javascript:;" class="simpleCart_checkout">Checkout</a>
+                <!--<a style="text-decoration: none; padding: 5px; color:black; line-height: 150%; font-size: 150%; background: white; border-radius: 50px;" href="javascript:;" class="simpleCart_checkout">Checkout</a>-->
+                <p>Please copy this cart into an email and <a href="mailto:someone@example.com?Subject=Circles-of-Life%20Order" target="_top">get in touch</a> with me for ordering and payment information.</p>
             </div>
         </div>
     </center>
@@ -116,8 +127,9 @@
             urlParams[decode(match[1])] = decode(match[2]);
     })();
     if (urlParams["order"] == "complete") {
-        alert("order complete, clearing chart");
-        simpleCart.empty();
+        if (confirm("Your order is complete.  Shall I clear your chart?")) {
+            simpleCart.empty();
+        }
     }
 
     //simpleCart.each(function (item, x) {
@@ -151,37 +163,37 @@
     //    ],
     //});
 
-    simpleCart({
-        cartColumns: [
-            { attr: "name", label: "Name" },
-            { attr: "type", label: false },
-            { attr: "price", label: "Price", view: 'currency' },
-            { view: "decrement", label: false, text: "-" },
-            { attr: "quantity", label: "Qty" },
-            { view: "increment", label: false, text: "+" },
-            { attr: "total", label: "SubTotal", view: 'currency' },
-            { view: "remove", text: "Remove", label: false },
-        { attr: "comment", label: "Comments" }
-        ],
+    //simpleCart({
+    //    cartColumns: [
+    //        { attr: "name", label: "Name" },
+    //        { attr: "type", label: false },
+    //        { attr: "price", label: "Price", view: 'currency' },
+    //        { view: "decrement", label: false, text: "-" },
+    //        { attr: "quantity", label: "Qty" },
+    //        { view: "increment", label: false, text: "+" },
+    //        { attr: "total", label: "SubTotal", view: 'currency' },
+    //        { view: "remove", text: "Remove", label: false }//,
+    //    //{ attr: "comment", label: "Comments" }
+    //    ],
 
-        checkout: {
-            type: "PayPal",
-            email: "antimetabole-facilitator@gmail.com",
-            sandbox: true,
-            uccess: "http://circles-of-life.com/cart.html?order=complete",
-            cancel: "http://circles-of-life.com/cart.html",
-        },
-        cartStyle: "table",
-        shippingFlatRate: 5,
-        extra_data: {
-            storename: "Bob's cool plumbing store",
-            cartid: "12321321",
-            commut: function () {
-                return "hello" + document.getElementById("comments").value;;
-            }
-        },
-        data: { test: "this is a test" }
-    });
+    //    checkout: {
+    //        type: "PayPal",
+    //        email: "antimetabole-facilitator@gmail.com",
+    //        sandbox: true,
+    //        uccess: "http://circles-of-life.com/cart.html?order=complete",
+    //        cancel: "http://circles-of-life.com/cart.html",
+    //    },
+    //    cartStyle: "table",
+    //    shippingFlatRate: 5,
+    //    extra_data: {
+    //        storename: "Bob's cool plumbing store",
+    //        cartid: "12321321",
+    //        commut: function () {
+    //            return "hello" + document.getElementById("comments").value;;
+    //        }
+    //    },
+    //    data: { test: "this is a test" }
+    //});
 
     /* if the cart is empty */
     simpleCart.bind('update', function () {
@@ -195,18 +207,124 @@
             $(".simpleCart_items").show();
             $("#emptyCartDisplay").hide();
             $(".simpleCart_checkout").show();
+            //apply_discount();
         }
     });
 
     /* add comments */
     //$("div.simpleCart_items tr:first").append("<td>Comments</td>");
     //simpleCart.each(function (item, x) {
-        ///items.push(item.name);
+    ///items.push(item.name);
     //});
     //$("div.simpleCart_items td.item-comment").each(function (index, element) {
     ////    alert(index);
     //    console.log(index.toString())
     //    $(this).append($('<textarea style="width:100%; background: black; color:white;" placeholder="Write some optional comments about this item."></textarea>'));
+    //});
+
+    asdf = 0;
+    function apply_discount(data) {
+        var item_counts = {
+            "Card": 0,
+            "Medium Print": 0,
+            "Large Print": 0,
+            "Medium Print Colored": 0,
+            "Large Print Colored": 0
+        };
+
+        var items = [];
+        var num_items = 0;
+        simpleCart.each(function (item, x) {
+            items.push(item);
+            //console.log(item.name);
+            //console.log(item);
+
+            //console.log(item.get("type"));
+            //var type = item.get("type");
+            // if (type in item_counts) {
+            //  item_counts[type]++;
+            //}
+            //else {
+            //  item_counts[type] = 0;
+            //}
+            //item_counts[item.get("type")] = (item.get("type") in item_counts) ? 0 : item_counts[item.get("type")] + 1;
+            //console.log(item_counts[type]);
+            ++num_items;
+        });
+
+        for (x in items) {
+
+            item_counts[items[x].get("type")] += items[x].get("quantity");
+        }
+
+        //console.log(item_counts);
+        //console.log("discounts ");
+        //console.log(asdf);
+
+
+        // 11x11, cards: 3 for $12, or 6 in an artist folder for $25.       (normally $5)
+        // 18x18, 11 x 11 colored: 2 for $25, 3 for $30                     (normally $15)
+
+        var total_tier_one = item_counts["Cards"] + item_counts["Medium Print"];
+        var discount_5 = Math.floor(total_tier_one / 6);
+        var discount_3 = Math.floor((total_tier_one % 6) / 3);
+
+        var total_tier_two = item_counts["Medium Print Colored"] + item_counts["Large Print"];
+        var discount_15 = Math.floor(total_tier_two / 3);
+        var discount_10 = Math.floor((total_tier_two % 3) / 2);
+
+        //simpleCart.add({ name: "Artist Folder Discount", price: -5, quantity: discount_5, type: "Discount" });
+        //simpleCart.add({ name: "Three for $12 Discount", price: -3, quantity: discount_3, type: "Discount" });
+
+        //simpleCart.add({ name: "Three for $30 Discount", price: -15, quantity: discount_15, "type": "Discount" });
+        //simpleCart.add({ name: "Two for $25 Discount", price: -10, quantity: discount_10, "type": "Discount" });
+
+        if (discount_5 > 0) {
+            data["item_name_" + num_items] = "Artist Folder Discount";
+            data["quantity_" + num_items] = discount_5;
+            data["amount_" + num_items] = (-5).toFixed(2);
+            data["item_number_" + num_items] = num_items;
+            ++num_items;
+        }
+
+        if (discount_3 > 0) {
+            data["item_name_" + num_items] = "Three for $12 Discount";
+            data["quantity_" + num_items] = discount_3;
+            data["amount_" + num_items] = (-3).toFixed(2);
+            data["item_number_" + num_items] = num_items;
+            ++num_items;
+        }
+
+        if (discount_15 > 0) {
+            data["item_name_" + num_items] = "Three for $30 Discount";
+            data["quantity_" + num_items] = discount_15;
+            data["amount_" + num_items] = (-15).toFixed(2);
+            data["item_number_" + num_items] = num_items;
+            ++num_items;
+        }
+
+        if (discount_10 > 0) {
+            data["item_name_" + num_items] = "Two for $25 Discount";
+            data["quantity_" + num_items] = discount_10;
+            data["amount_" + num_items] = (-10).toFixed(2);
+            data["item_number_" + num_items] = num_items;
+            ++num_items;
+        }
+    }
+    //apply_discount();
+
+   // simpleCart.bind('ready', function () {
+        //console.log("simpleCart total: " + simpleCart.toCurrency(simpleCart.total()));
+        //var num = 0;
+        //simpleCart.each(function (item, x) {
+            //++num;
+        //});
+        //console.log("total is " + num.toString());
+        //apply_discount();
+        //simpleCart.bind('update', apply_discount);
+    // });
+    //simpleCart.bind('beforeCheckout', function (data) {
+    //    apply_discount(data);
     //});
 </script>
 </html>
